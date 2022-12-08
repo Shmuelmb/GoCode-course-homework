@@ -9,8 +9,6 @@
 // document.body.append(input, btn)
 
 //2. 
-
-
 // const bodyEl = document.querySelector('body')
 // bodyEl.style.margin = 0
 // bodyEl.style.width = '100vw'
@@ -60,7 +58,6 @@
 // const arr = [1,2,3,4,5]
 // arrEl.innerText = arr.join(' ')
 // document.body.append(arrEl, btn)
-
 // btn.addEventListener('click', function(event){
 //     arr.pop()
 //     arrEl.innerText = arr.join('')
@@ -141,4 +138,4 @@
 // setInterval(function(event){
 //     const randomColor = (colors[getRndInteger(0, colors.length -1)])
 //     document.body.style.backgroundColor = randomColor
-// }, 500)
+// }, 2000)
