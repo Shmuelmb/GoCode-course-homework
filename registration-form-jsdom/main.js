@@ -6,10 +6,9 @@ const tagsArr = [
     {name: 'phoneNumber', tag:'input', placeholder:'enter your phone number', type: 'number'},
     {name: 'city', tag:'input', placeholder:'enter your city'},
     {name: 'Address', tag:'input', placeholder:'enter your Address'},
-    {name: 'gender', tag:'select'},
+    {name: 'gender', tag:'select', value:'gender'},
     {name: 'age', tag:'select'},
-    {name: 'checkbox of registration conditions', tag:'input', type:'radio'},
-    {name:'Approval of the registration conditions', tag:'span', innerText: 'i am agrre for the conditions of registration'},
+    {name: 'checkBox', tag:'input', type:'radio'},
     {name: 'btn', tag: 'button', innerText:'Submit'},
 
 
@@ -26,15 +25,24 @@ function range(start, end) {
         ans.push(i);
     } return ans
 }
+const formObj = {}
 
 //1
 tagsArr.forEach(function(item){
     const element = document.createElement(item.tag)
-    element.innerText = item.innerText
+    element.style.display = 'block'
     element.placeholder = item.placeholder
     element.type = item.type
     element.name = item.name
     if(item.name === 'gender'){
+        if(!formObj.hasOwnProperty(item.name)){
+            formObj[item.name] = 'male'
+        }
+        const genderPar = document.createElement('p')
+        genderPar.style.display = 'inline-block'
+        genderPar.innerText = 'select your gender: '
+        document.body.appendChild(genderPar)
+        element.value = item.value
         genderOptionsArr.forEach(function(opt){
             const option = document.createElement(opt.tag)
             option.value = opt.value;
@@ -43,6 +51,13 @@ tagsArr.forEach(function(item){
         })
 
     } else if(item.name === 'age'){
+        if(!formObj.hasOwnProperty(item.name)){
+            formObj[item.name] = '18'
+        }
+        const agePar = document.createElement('p')
+        agePar.style.display = 'inline-block'
+        agePar.innerText = 'select your age: '
+        document.body.appendChild(agePar)
         range(18,90).forEach(function(num){
             const option = document.createElement('option')
             option.value = num
@@ -54,14 +69,24 @@ tagsArr.forEach(function(item){
         element.addEventListener('click', function(){
             console.log(formObj)
         })
+    
+    }else if (item.name === 'checkBox'){
+        element.style.display = 'inline-block'
+        const pCheckbox = document.createElement('p')
+        pCheckbox.innerText = 'i am agree for the conditions of registration'
+        pCheckbox.style.display = 'inline-block'
+        document.body.append(pCheckbox)
+
+
     }element.addEventListener('change', function(c){
         formObj[item.name] = c.target.value
+        if (c.target.value === 'on'){
+            formObj[item.name] = 'confirmed'
+        }
     })
     document.body.appendChild(element)
+
 })
-
-const formObj = {}
-
 
 
 
